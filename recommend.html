@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Recommender System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<style>
+    button:hover{
+        color:darkorange;
+    }
+    a, u {
+  text-decoration: none;
+          }
+    a:hover {
+background-color: #ff8f56;
+}
+    .card{
+        margin-bottom: 30px;
+    width: 250px;
+    box-shadow: 0 15px 25px rgba(129, 124, 124, 0.2);
+    height: 300px;
+        display: flow-root;
+    border-radius: 5px;
+    backdrop-filter: blur(100px);
+    background-color: rgba(254, 95, 95, 0.2);
+    text-align: center;
+    }
+
+    .background{
+    height: 150px;
+    margin-bottom:30px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .book-name{
+        color:black;
+        text-shadow: 1px 1px #ffffff;
+        font-family:Verdana,serif;
+    }
+    .book-details{
+        color: #000000;
+        text-shadow: 1px 1px #aedade;
+        font-family:'Bahnschrift,serif';
+    }
+    .page{
+        border:none;
+        display:inline-flex;
+        background-color: #b9b9b9;
+        border-radius:5px;
+        color: #030303;
+        position: relative;
+        text-shadow: 1px 1px #e1e1e1;
+        margin-bottom: 10px;
+    }
+    ul li{
+        font-family: "Times New Roman",serif;
+        font-size: 20px;
+    }
+    .navbar-brand{
+        font-size: 40px;
+        text-align: center;
+        text-shadow: 3px 3px #3f3030;
+        color: #ffffff;
+        position: relative;
+        background-size: cover;
+        font-family: "Times New Roman",serif;
+        background-repeat:repeat;
+    }
+    img{
+    float: left;
+    width: 100px;
+    height: 100px;
+        position:absolute;
+        background-repeat: no-repeat, repeat;
+
+    }
+    .text-top50{
+        color: #d3d3d3;
+        text-shadow: 3px 3px #2c2c2c;
+        position: relative;
+        text-align: center;
+    }
+</style>
+<body style="background: radial-gradient(circle, rgb(98,76,95) 0%, rgb(53,84,79) 100%);" >
+  <img src="https://c.wallhere.com/photos/c4/8c/books_library_bokeh_depth_of_field-74960.jpg!d" style="position:fixed;width:100%; display:flex;height: 100%;background-position: center;background-size: cover;" alt="alternateimage">
+      <nav class="nav-bar">
+          <p class="navbar-brand"><strong>MY BOOK RECOMMENDER</strong</p>
+          <ul class="nav navbar-nav">
+              <li style="display: inline;margin:10px;padding:10px"><a class="page" href="/">Home</a></li>
+              <li style="display: inline;margin:10px;padding:10px"><a class="page" href="/recommend">Recommend</a></li>
+            
+          </ul>
+     </nav>
+     <div class="container">
+         <div class="row">
+             <div class="col-12" >
+             <h1 class="text-top50" style="text-align: center; font-family: 'Times New Roman',serif"><strong>Recommend Books</strong></h1>
+             <form action="/recommend_books" method="post" id="MyForm">
+                 <div class="input-group mb-3">
+                     <span class="input-group-text" id="inputGroup-sizing-default" style="width:200px;background:#b9b9b9;text-align: center; font-family: 'Times New Roman';color: #030303;text-shadow: 1px 1px #e1e1e1;font-weight: bold;font-size: 18px">Type Book Name Here</span>
+                     <input name="user_input" id="myInput" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" >
+                     
+                 </div>
+             </form>
+             </div>
+            
+        
+
+             {% if data %}
+                 {% for i in data %}
+                     <div class="col-3" style="margin:none">
+                         <div class="background">
+                             <div class="card" style="width:300px ;height:200px;" >
+                                 <div class="card-body">
+                                     <img class="card-img-top" src="{{i[2]}}" style="width:100px;height:180px; position:relative;margin-bottom:20px">
+                                     <h6 class="book-name"><strong>{{i[0]}}</strong></h6>
+                                     <p class="book-details"> {{i[1]}}</p>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 {% endfor %}
+             {% endif %}
+             
+         </div>
+     </div>
+</body>
+</html>
